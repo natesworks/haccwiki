@@ -36,12 +36,12 @@ Then you will find a function in an if statement
 
 Enter this function
 
-Now find a function that has many arguments and might appear multiple times, this is LogicGameObjectsManager::encode!
+Now find a function that has many arguments and might appear multiple times, this is LogicGameObjectManagerServer::encode!
 
 Find a function that isn't used as variable and get the address of the function "sub_smth(a1, a2, number)" you just found BitStream::writePositiveInt!
 
 ```js
-Interceptor.attach(base.add(LogicGameObjectsManager::encode), {
+Interceptor.attach(base.add(LogicGameObjectManagerServer::encode), {
     onEnter: function(args) {
          console.log("self.writePositiveInt(" + args[1].toInt32() + "," + args[2].toInt32() + ")")
    },
