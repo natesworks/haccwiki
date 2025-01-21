@@ -9,7 +9,7 @@ To enable offline battles, you basically need to make the play button start an o
 
 How though?
 
-The battle type is the 3rd argument of HomePage::startGame, and offline battle type is 3, so we need to patch the argument number 3 to make it always 3.
+The battle type is the 3rd argument of HomePage::startGame, and offline battle type is 4 (index 3 as it starts from 0), so we need to patch the argument number 4 to make it always 3.
 
 
 But first we need to find HomePage::startGame!
