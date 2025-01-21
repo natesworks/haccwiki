@@ -3,14 +3,11 @@ title: Offline Battles
 description: A tutorial on how to enable offline battles by PrimoDevHacc
 ---
 
-How to enable offline battles on any client?
-
 To enable offline battles, you basically need to make the play button start an offline battle
 
 How though?
 
 The battle type is the 3rd argument of HomePage::startGame, and offline battle type is 4 (index 3 as it starts from 0), so we need to patch the argument number 4 to make it always 3.
-
 
 But first we need to find HomePage::startGame!
 
@@ -26,4 +23,4 @@ Interceptor.attach(cache.base.add(HomePage::startGame),{
     });
 ```
 
-replace "HomePage::startGame" by its actual address
+Replace "HomePage::startGame" by its actual address for the version you want to do this for.

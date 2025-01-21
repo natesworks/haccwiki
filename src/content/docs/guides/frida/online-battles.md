@@ -29,22 +29,19 @@ if ( dword_smth )
       v7 = *(_DWORD *)(*(_DWORD *)(a1 + 28) + 164);
 ```
 
-now go to sub_our_target
+Now go to sub_our_target
 
-then you will find a function in an if statement
+Then you will find a function in an if statement
 "sub_smth(a1, 0, 0)"
 
-enter this function
+Enter this function
 
-now find a function that has many arguments and might appear multiple times, this is LogicGameObjectsManager::encode!
+Now find a function that has many arguments and might appear multiple times, this is LogicGameObjectsManager::encode!
 
-Find a function that isn't used as variable
-
-and get the address of the function "sub_smth(a1, a2, number)" you just found BitStream::writePositiveInt!!!!
-now complete the address of this script and run it using a computer!
+Find a function that isn't used as variable and get the address of the function "sub_smth(a1, a2, number)" you just found BitStream::writePositiveInt!
 
 ```js
-Interceptor.attach(base.add(your address), {
+Interceptor.attach(base.add(LogicGameObjectsManager::encode), {
     onEnter: function(args) {
          console.log("self.writePositiveInt(" + args[1].toInt32() + "," + args[2].toInt32() + ")")
    },
@@ -52,4 +49,5 @@ Interceptor.attach(base.add(your address), {
 }
 ```
 
-you just got battle structure!
+Replace "LogicGameObjectsManager::encode" by its actual address for the version you want to do this for.
+~
