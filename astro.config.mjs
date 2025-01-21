@@ -22,7 +22,7 @@ export default defineConfig({
 				{
 				        label: 'Server development',
 					items [
-            					{ label: 'Introduction', slug: 'guides/server/introduction },
+            					{ label: 'Introduction', slug: 'guides/server/introduction' },
 						{ label: 'Socket', slug: 'guides/server/socket'}
 					]
 				}
