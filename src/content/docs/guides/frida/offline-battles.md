@@ -12,7 +12,7 @@ The battle type is the 3rd argument of HomePage::startGame, and offline battle t
 But first we need to find HomePage::startGame!
 
 This is pretty easy to find this function, you need to find the function called _srand in ida pro, xref it by pressing x and take a look of all functions using it, once you found a function where you see
-'if a3 == 3" it means you are in the correct place, now all you need to do on your frida script is:
+"if a4 == 3" it means you are in the correct place, now all you need to do on your frida script is:
 
 
 ```js
