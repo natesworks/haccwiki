@@ -1,5 +1,5 @@
 ---
-title: Onffline Battles
+title: Offline Battles
 description: A tutorial on how to enable offline battles by PrimoDevHacc
 ---
 
