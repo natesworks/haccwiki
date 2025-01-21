@@ -12,12 +12,19 @@ export default defineConfig({
 			},
 			sidebar: [
 				{
-					label: 'Frida tutorials ',
+					label: 'Frida',
 					items: [
 						{ label: 'Attaching frida', slug: 'guides/frida/attaching' },
 						{ label: 'Online battles', slug: 'guides/frida/online-battles' },
 						{ label: 'Offline battles', slug: 'guides/frida/offline-battles' },
 					],
+				},
+				{
+				        label: 'Server development'
+					items [
+            					{ label: 'Introduction', slug: 'guides/server/introduction },
+						{ label: 'Socket', slug: 'guides/server/socket'}
+					]
 				}
 			],
 		}),
