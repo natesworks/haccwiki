@@ -6,25 +6,19 @@ import starlight from '@astrojs/starlight';
 export default defineConfig({
 	integrations: [
 		starlight({
-			site: "https://hacc.natesworks.com/",
-			title: 'HaccWiki',
+			title: 'Hacc Wiki',
 			social: {
-				github: 'https://github.com/withastro/starlight',
+				github: 'https://github.com/allbrawl/haccwiki',
 			},
 			sidebar: [
-				{ text: 'Getting Started', link: '/guides/start-hacking/' },
-				{ text: 'Categories', link: '/categories/' },
-				{ text: 'Contribute', link: '/contribute/' },
-				{ text: 'About', link: '/about/' },
-			  ],
-			head: {
-				meta: [
-				  { name: 'description', content: 'HaccWiki — Tutorials and Hacks for Everyone' },
-				  { name: 'keywords', content: 'hacks, tutorials, programming, hacking, technology' },
-				],
-			  },
+				{
+					label: 'Frida tutorials ',
+					items: [
+						// Each item here is one entry in the navigation menu.
+						{ label: 'Online battles', slug: 'guides/frida/online-battles' },
+					],
+				}
+			],
 		}),
 	],
 });
-
-
