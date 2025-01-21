@@ -14,7 +14,7 @@ export default defineConfig({
 				{
 					label: 'Frida tutorials ',
 					items: [
-						// Each item here is one entry in the navigation menu.
+						{ label: 'Attaching frida', slug: 'guides/frida/attaching' },
 						{ label: 'Online battles', slug: 'guides/frida/online-battles' },
 						{ label: 'Offline battles', slug: 'guides/frida/offline-battles' },
 					],
