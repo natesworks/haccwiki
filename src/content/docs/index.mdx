@@ -1,50 +1,36 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
+title: Hacc Wiki
+description: Brawl Stars related frida and server development tutorials.
 template: splash
 hero:
-  tagline: Dive into HaccWiki — Your hub for cool tutorials and hacks!
+  tagline: Congrats on setting up a new Starlight project!
   image:
-    file: ../../assets/haccwiki-hero.webp
+    file: ../../assets/houston.webp
   actions:
-    - text: Start Learning
-      link: /guides/start-hacking/
+    - text: Example Guide
+      link: /guides/example/
       icon: right-arrow
-    - text: About HaccWiki
-      link: /about/
-      icon: info
+    - text: Read the Starlight docs
+      link: https://starlight.astro.build
+      icon: external
       variant: minimal
-
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Explore HaccWiki
+## Next steps
 
 <CardGrid stagger>
- <Card title="Learn Tutorials" icon="pencil">
-   Start with [our beginner-friendly guides](./guides/start-hacking/).
- </Card>
- <Card title="Contribute Hacks" icon="add-document">
-   Share your knowledge by [submitting a hack](./contribute/).
- </Card>
- <Card title="Explore Categories" icon="grid">
-   Discover tutorials by topic in [our categories](./categories/).
- </Card>
- <Card title="Get Support" icon="lifebuoy">
-   Need help? [Join our community](./community/).
- </Card>
-</CardGrid>
-## Featured Tutorials
-
-<CardGrid>
- <Card title="Getting Started with Kali Linux" link="/guides/kali-linux/">
-   Install and set up Kali Linux for ethical hacking.
- </Card>
- <Card title="Building a Simple Web Scraper" link="/guides/web-scraper/">
-   Learn how to scrape websites using Python.
- </Card>
- <Card title="Understanding Cybersecurity Basics" link="/guides/cybersecurity-basics/">
-   Start your journey into the world of cybersecurity.
- </Card>
+	<Card title="Update content" icon="pencil">
+		Edit `src/content/docs/index.mdx` to see this page change.
+	</Card>
+	<Card title="Add new content" icon="add-document">
+		Add Markdown or MDX files to `src/content/docs` to create new pages.
+	</Card>
+	<Card title="Configure your site" icon="setting">
+		Edit your `sidebar` and other config in `astro.config.mjs`.
+	</Card>
+	<Card title="Read the docs" icon="open-book">
+		Learn more in [the Starlight Docs](https://starlight.astro.build/).
+	</Card>
 </CardGrid>
