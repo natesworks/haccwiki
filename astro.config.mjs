@@ -21,7 +21,7 @@ export default defineConfig({
 				},
 				{
 				        label: 'Server development',
-					items [
+					items: [
             					{ label: 'Introduction', slug: 'guides/server/introduction' },
 						{ label: 'Socket', slug: 'guides/server/socket'}
 					]
