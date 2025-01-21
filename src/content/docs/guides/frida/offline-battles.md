@@ -23,4 +23,4 @@ Interceptor.attach(cache.base.add(HomePage::startGame),{
     });
 ```
 
-Replace "HomePage::startGame" by its actual address for the version you want to do this for.
+Replace "HomePage::startGame" with its actual address.

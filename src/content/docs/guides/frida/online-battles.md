@@ -49,5 +49,4 @@ Interceptor.attach(base.add(LogicGameObjectsManager::encode), {
 }
 ```
 
-Replace "LogicGameObjectsManager::encode" by its actual address for the version you want to do this for.
-~
+Replace "LogicGameObjectsManager::encode" with its actual address.
