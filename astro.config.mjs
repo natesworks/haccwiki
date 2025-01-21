@@ -16,6 +16,7 @@ export default defineConfig({
 					items: [
 						// Each item here is one entry in the navigation menu.
 						{ label: 'Online battles', slug: 'guides/frida/online-battles' },
+						{ label: 'Offline battles', slug: 'guides/frida/offline-battles' },
 					],
 				}
 			],
