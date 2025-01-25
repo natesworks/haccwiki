@@ -47,7 +47,7 @@ This tutorial explains how to attach a Frida script to Brawl Stars. Frida is a d
      ```
      Replace `"XXX"` with the name you used in step 1 (e.g., `"debug"`).
 
-     **BSD**
+   **BSD**
      
    - Open the `smali/com/supercell/titan/TitanApplication.smali` file.
    - Locate the line containing `"BSD"`.
