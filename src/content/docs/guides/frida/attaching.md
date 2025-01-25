@@ -33,13 +33,28 @@ This tutorial explains how to attach a Frida script to Brawl Stars. Frida is a d
    - Place it inside of libXXX.so.
 
 4. **Modify the application's Smali code:**
+
+    **Offline**
+   
    - Open the `smali/com/supercell/titan/GameApp.smali` file.
-   - Locate a line containing the character `"g"`.
-   - Move three lines down from that line.
+   - Locate the line containing `"g"`.
+   - Move below the invoke.
    - Insert the following Smali code to load your Frida script:
 
      ```smali
-     const-string v0, "XXX" 
-     invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V 
+     const-string lib, "XXX" 
+     invoke-static {lib}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V 
      ```
      Replace `"XXX"` with the name you used in step 1 (e.g., `"debug"`).
+
+     **BSD**
+     
+   - Open the `smali/com/supercell/titan/TitanApplication.smali` file.
+   - Locate the line containing `"BSD"`.
+   - Move below the invoke.
+   - Insert the following Smali code to load your Frida script:
+
+     ```smali
+     const-string lib, "XXX" 
+     invoke-static {lib}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V 
+     ```
