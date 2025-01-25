@@ -17,6 +17,7 @@ export default defineConfig({
 						{ label: 'Attaching frida', slug: 'guides/frida/attaching' },
 						{ label: 'Online battles', slug: 'guides/frida/online-battles' },
 						{ label: 'Offline battles', slug: 'guides/frida/offline-battles' },
+						{ label: 'Best way to code', slug: 'guides/frida/correct-way' },
 					],
 				},
 				{
