@@ -1,5 +1,5 @@
 ---
-title: "Best" way to debug scripts
+title: \"Best\" way to debug scripts
 description: Tutorial made by kubune describing the best way to code in frida!
 ---
 
