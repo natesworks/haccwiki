@@ -21,10 +21,11 @@ export default defineConfig({
 					],
 				},
 				{
-				        label: 'Server development',
+					label: 'Server development',
 					items: [
-            					{ label: 'Introduction', slug: 'guides/server/introduction' },
-						{ label: 'Socket', slug: 'guides/server/socket'}
+						{ label: 'Introduction', slug: 'guides/server/introduction' },
+						{ label: 'Socket', slug: 'guides/server/socket' },
+						{ label: 'Packets', slug: 'guides/server/packets' },
 					]
 				}
 			],
