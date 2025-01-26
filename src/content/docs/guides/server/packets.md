@@ -22,9 +22,9 @@ Steps:
 ## Analyzing the Library
 Analyzing is usually not helpful, only when dealing with versions like **Brawl Stars v36.218**, which contains debug symbols (DWARF Info).
 
-[Here](https://mega.nz/file/e3AB3YqQ#Z1y4M-9wlUvA274IZgvKuqeq2k17Zj5EHu5SxqZMQXY) is a link to the dump of this library (arm32).
+[Here](https://mega.nz/file/e3AB3YqQ#Z1y4M-9rlUvA274IZgvKuqeq2k17Zj5EHu5SxqZMQXY) is a link to the dump of this library (arm32).
 
-(thanks [santer](https://github.com/SANS3R66))
+(Thanks [santer](https://github.com/SANS3R66))!
 
 ### Loading into IDA
 1. Load the library file into **IDA Pro**.  
@@ -115,4 +115,4 @@ And that’s it! You successfully got the message structure. It wasn’t too dif
 Oh, this won't work for OHD btw. Maybe I’ll add that too later.
 
 ## Credits
-A kind of Russian version of this guide can be found [here](https://github.com/SANS3R66/brawlstars-re/wiki/Reverse-engineering)
+A kind of Russian version of this guide can be found [here](https://github.com/SANS3R66/brawlstars-re/wiki/Reverse-engineering).
