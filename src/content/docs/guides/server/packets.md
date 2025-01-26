@@ -1,6 +1,6 @@
 ---
 title: Packets
-description: Introduction to RE and finding packet structure by erder
+description: Introduction to RE and finding packet structure by sand (real)
 ---
 
 # Introduction
