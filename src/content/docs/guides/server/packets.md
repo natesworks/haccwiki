@@ -4,122 +4,115 @@ description: Introduction to RE and finding packet structure by erder
 ---
 
 # Introduction
+To begin reverse engineering, you need a disassembler. The most commonly used in **Supercell Reverse Engineering (SCRE)** is **IDA Pro**. Note that the free version (IDA Free, also called "IDA Slave Edition") doesn't have all the necessary features; you need the pro version.
 
-To start wevewse engineewing, you need a disassembwer. The most common one in SCRE (Supercell Wevewse Engineewing) is **IDA Pro**. Note that the fwee vewsion (IDA Free, also called "IDA Slave Edition") doesn't have all the necessawy featuwes; you need the pro vewsion.
+## Getting Started
+On Android, our target is `libg.so`, located in the `/lib` directory.
+On iOS, our target is the "Brawl Stars" executable, located in the `Payload/Brawl Stars.app` directory, but I won't go into that further.
 
-## Getting Stawted
+Before analyzing `libg.so`, we first need to dump the library to extract the strings. You can use [PADumper](https://github.com/BryanGIG/PADumper) for this. It's probably the simplest tool for the task.
 
-On Andwoid, ouw tawget is `libg.so`, wocated in the `/lib` diwectowy.
-On iOS, ouw tawget is the "Brawl Stars" executabwe, wocated in the `Payload/Brawl Stars.app` diwectowy, but I won't go into that fuwwthew.
+Steps:  
+1. Launch **Brawl Stars**.  
+2. Open **PADumper**.  
+3. Choose **Brawl Stars** as the target application.  
+4. Write `libg.so` in the library field.  
+5. Check the box for "Fix ELF," as this usually resolves ELF-related issues.
 
-Befowe anawyzing `libg.so`, we fiwst need to dump the wibwawy to extwact the stwings. You can use [PADumper](https://github.com/BryanGIG/PADumper) fow this. It's pwobabwy the simpwest toow fow the task.
+## Analyzing the Library
+Analyzing is usually not helpful, only when dealing with versions like **Brawl Stars v36.218**, which contains debug symbols (DWARF Info).
 
-Steps:
-1. Launch **Brawl Stars**.
-2. Open **PADumper**.
-3. Choose **Brawl Stars** as the tawget appwication.
-4. Write `libg.so` in the wibwawy fiewd.
-5. Check the box fow "Fix ELF," as this usuawwy wesowves ELF-wewated issues.
+[Here](https://mega.nz/file/e3AB3YqQ#Z1y4M-9wlUvA274IZgvKuqeq2k17Zj5EHu5SxqZMQXY) is a link to the dump of this library (arm32).
 
-## Anawyzing the Wibwawy
+(thanks [santer](https://github.com/SANS3R66))
 
-Anawyzing is usuawwy not hewpfuw, onwy when deawing with vewsions wike **Brawl Stars v36.218**, which contains debug symbows (DWARF Info).
+### Loading into IDA
+1. Load the library file into **IDA Pro**.  
+2. Wait for the auto-analysis to finish. You'll know it's done when the status changes to "Idle":
 
-[Hewe](https://mega.nz/fiwe/e3AB3YqQ#Z1y4M-9wlUvA274IZgvKuqeq2k17Zj5EHu5SxqZMQXY) is a wink to the dump of this wibwawy (awm32).
+   ![Auto Analysis Complete](https://i.imgur.com/hs3103j.png)  
+   ![Idle Status](https://i.imgur.com/0T8qjk4.png)
 
-(thankies [santer](https://github.com/SANS3R66))
+### Debug Symbols
+Debug symbols provide function names, which are critical for navigating the library. And like I said, they can only be found in v36.218. However, the names are a little broken. You can fix them using this script made by Primo.
 
-### Woading into IDA
-1. Woad the wibwawy fiwe into **IDA Pro**.
-2. Wait fow the auto-anawysis to finish. You'ww know it's done when the status changes to "Idwe":
-
-   ![Auto Anawysis Compwete](https://i.imguw.com/hs3103j.png)
-
-   ![Idwe Status](https://i.imguw.com/0T8qjk4.png)
-
-### Debug Symbows
-Debug symbows pwovide function nyames, which awe cwichyaw fow nyavigating the wibwawy. And wike I said, they can onwy be found in v36.218. Howevew, the nyames awe a wittwe bwoken uwu. You can fix them using this scwipt made by Primo.
-
-```idc
-// This scwipt fixes v36 BS wib's gwitched debug symbows.
+‘’’idc
+// This script fixes v36 BS lib's glitched debug symbols.
 #include <idc.idc>
 
 static main() {
   auto ea, x;
 
-  fow (ea = get_next_func(0); ea != BADADDR; ea = get_next_func(ea)) {
-    x = get_func_fwags(ea);
+  for (ea = get_next_func(0); ea != BADADDR; ea = get_next_func(ea)) {
+    x = get_func_flags(ea);
     auto func_name = GetFunctionName(ea);
     auto new_name = "_" + func_name;
     MakeName(ea, new_name);
   }
-  msg("Aww functions patched successfuwwy!");
+  msg("All functions patched successfully!");
 }
-```
+‘’’
 
-Aftew wunning the scwipt, bwoken function nyames wike this:
+After running the script, broken function names like this:
 
-![Bwoken Functions](https://i.imguw.com/kvzQnzT.png)
+![Broken Functions](https://i.imgur.com/kvzQnzT.png)
 
-will tuwn into this:
+will turn into this:
 
-![Fixed Functions](https://i.imguw.com/FdUw3mI.png)
+![Fixed Functions](https://i.imgur.com/FdUw3mI.png)
 
-## Finding the Message Stwuctuwe
+## Finding the Message Structure
+Let's take `ChangeAllianceSettingsMessage` as an example. In v36.218, you can simply search for `ChangeAllianceSettingsMessage::encode` to find the structure:
 
-Let's take `ChangeAllianceSettingsMessage` as an exampwe. In v36.218, you can simpwy seawch fow `ChangeAllianceSettingsMessage::encode` to find the stwuctuwe:
+![Search Results](https://i.imgur.com/h1KYVn8.png)
 
-![Seawch Wesuwts](https://i.imguw.com/h1KYVn8.png)
+### Versions Without Debug Symbols
+For versions without debug symbols, you need to locate the message ID. A list of all message IDs can be found [here](https://github.com/athemm/brawl-proxy/blob/main/packets.json).
 
-### Vewsions Without Debug Symbows
-Fow vewsions without debug symbows, you nyeed to wocate the message ID. A wist of aww message IDs can be found [here](https://github.com/athemm/brawl-proxy/blob/main/packets.json).
+From the list, we know the message ID for `ChangeAllianceSettingsMessage` is **14316**.
 
-Fwom the wist, we know the message ID fow `ChangeAllianceSettingsMessage` is **14316**.
+1. In **IDA**, go to **Search** > **Immediate Value**.  
+2. Enable "Find all occurrences."  
+3. Click **Search**.
 
-1. In **IDA**, go to **Seawch** > **Immediate Vawue**.
-2. Enabwe "Find all occurrences."
-3. Cwick **Seawch**.
+Results:
 
-Wesuwts:
+![Search Results](https://i.imgur.com/fuoypEV.png)
 
-![Seawch Wesuwts](https://i.imguw.com/fuoypEV.png)
+The first result is likely what we need. You can confirm this by opening the function:
 
-The fiwst wesuwt is wikewy what we nyeed. You can confiwm this by opening the function:
+![Function Result](https://i.imgur.com/1ZeAtYs.png)
 
-![Function Wesuwt](https://i.imguw.com/1ZeAtYs.png)
+As shown above, it simply returns the message ID, confirming it’s the correct function.
 
-As shown above, it simpwy wetuwns the message ID, confiwwming it’s the cowwect function.
+### Navigating Further
+We are now in the `::getMessageType` method. Follow the cross-references (XRefs):
 
-### Nyavigating Fuwthew
-We awe nyow in the `::getMessageType` method. Fowwow the cwoss-wefewences (XRefs):
+![XRefs](https://i.imgur.com/P7Kfa4L.png)
 
-![XRefs](https://i.imguw.com/P7Kfa4L.png)
+By comparing this to other messages and to version v36.218, we can identify corresponding methods:
 
-By compawing this to othew messages and to vewsion v36.218, we can identify cowwesponding nyethods:
+![Comparison](https://i.imgur.com/qgE5wM4.png)
 
-![Compawison](https://i.imguw.com/qgE5wM4.png)
+### Decoding the Message Structure
+If we now check the message, we'll see something like this:
 
-### Decoding the Message Stwuctuwe
+![idk](https://i.imgur.com/Q9hoH9g.png)
 
-If we nyow check the message, we'ww see something wike this:
+Comparing to v36.218, we can deduce:
 
-![idk](https://i.imguw.com/Q9hoH9g.png)
-
-Compawing to v36.218, we can deduce:
-
-- `sub_47B1A0` = `ByteStream::writeString`
-- `sub_BC260` = `ByteStreamHelper::writeDataReference`
-- `sub_66BB1C` = `ByteStream::writeVInt`
+- `sub_47B1A0` = `ByteStream::writeString`  
+- `sub_BC260` = `ByteStreamHelper::writeDataReference`  
+- `sub_66BB1C` = `ByteStream::writeVInt`  
 - `sub_2B588C` = `ByteStream::writeBoolean`
 
-This wesuwts in:
+This results in:
 
-![Decoded Message](https://i.imguw.com/GDFXjww.png)
+![Decoded Message](https://i.imgur.com/GDFXjww.png)
 
-And that’s it! You successfuwwy got the message stwuctuwe. It wasn’t too diffyicuwt, was it?
+And that’s it! You successfully got the message structure. It wasn’t too difficult, was it?
 
-Oh, this won't wowk fow OHD btw. maybe I'ww add that too watah uwu.
+Oh, this won't work for OHD btw. Maybe I’ll add that too later.
 
-## Cwedits
-
-a kind of wussian vewsion of this guide can be found [hewe](https://github.com/SANS3W66/brawlstars-re/wiki/Reverse-engineering)
+## Credits
+A kind of Russian version of this guide can be found [here](https://github.com/SANS3R66/brawlstars-re/wiki/Reverse-engineering)
