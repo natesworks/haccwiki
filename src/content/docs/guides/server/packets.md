@@ -36,7 +36,7 @@ Analyzing is usually not helpful, only when dealing with versions like **Brawl S
 ### Debug Symbols
 Debug symbols provide function names, which are critical for navigating the library. And like I said, they can only be found in v36.218. However, the names are a little broken. You can fix them using this script made by Primo.
 
-‘’’idc
+```idc
 // This script fixes v36 BS lib's glitched debug symbols.
 #include <idc.idc>
 
@@ -51,7 +51,7 @@ static main() {
   }
   msg("All functions patched successfully!");
 }
-‘’’
+```
 
 After running the script, broken function names like this:
 
