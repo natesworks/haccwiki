@@ -92,7 +92,7 @@ We are now in the `::getMessageType` method. Follow the cross-references (XRefs)
 
 By comparing this to other messages and to version v36.218, we can identify corresponding methods:
 
-![Comparison](https://i.imgur.com/qgE5wM4.png)
+![Comparison](https://i.imgur.com/qgE5wM4.png(https://dl.natesworks.com/haccwiki/media/comparison.png)
 
 ### Decoding the Message Structure
 If we now check the message, we'll see something like this:
