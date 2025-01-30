@@ -112,7 +112,5 @@ This results in:
 
 And that’s it! You successfully got the message structure. It wasn’t too difficult, was it?
 
-Oh, this won't work for OHD btw. Maybe I’ll add that too later.
-
 ## Credits
 A kind of Russian version of this guide can be found [here](https://github.com/SANS3R66/brawlstars-re/wiki/Reverse-engineering).
