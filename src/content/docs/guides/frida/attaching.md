@@ -38,7 +38,7 @@ This tutorial explains how to attach a Frida script to Brawl Stars. Frida is a d
    
    - Open the `smali/com/supercell/titan/GameApp.smali` file.
    - Locate the line containing `"g"`.
-   - Move below the invoke.
+   - Move below the invoke of whatever offline script you have with anticheat kill.
    - Insert the following Smali code to load your Frida script:
 
      ```smali
