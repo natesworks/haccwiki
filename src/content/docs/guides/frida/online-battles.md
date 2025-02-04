@@ -7,7 +7,7 @@ How to make online battles?
 
 This is pretty easy to get structure, this tutorial will be focused on that, you will have to code logic yourself.
 
-On goal function is BitStream::writePositiveInt 
+On goal function is BitStream.writePositiveInt 
 
 To find it you will have to go a little deep 😅
 
@@ -36,17 +36,16 @@ Then you will find a function in an if statement
 
 Enter this function
 
-Now find a function that has many arguments and might appear multiple times, this is LogicGameObjectManagerServer::encode!
+Now find a function that has many arguments and might appear multiple times, this is LogicGameObjectManagerServer.encode!
 
 Find a function that isn't used as variable and get the address of the function "sub_smth(a1, a2, number)" you just found BitStream::writePositiveInt!
 
 ```js
-Interceptor.attach(base.add(LogicGameObjectManagerServer::encode), {
+Interceptor.attach(base.add(LogicGameObjectManagerServer.encode), {
     onEnter: function(args) {
          console.log("self.writePositiveInt(" + args[1].toInt32() + "," + args[2].toInt32() + ")")
    },
 });
-}
 ```
 
-Replace "LogicGameObjectsManager::encode" with its actual address.
+Replace "LogicGameObjectsManager.encode" with its actual address.
