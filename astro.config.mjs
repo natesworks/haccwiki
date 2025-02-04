@@ -18,7 +18,7 @@ export default defineConfig({
 						{ label: 'Online battles', slug: 'guides/frida/online-battles' },
 						{ label: 'Offline battles', slug: 'guides/frida/offline-battles' },
 						{ label: 'Best way to code', slug: 'guides/frida/correct-way' },
-						{ label: 'Reverse Engineering - Making Brawl Stars offline', slug: 'https://peterr.dev/re/brawl-stars-offline/' },
+						{ label: 'Reverse Engineering - Making Brawl Stars offline', link: 'https://peterr.dev/re/brawl-stars-offline/' },
 					],
 				},
 				{
