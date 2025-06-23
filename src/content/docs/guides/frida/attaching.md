@@ -42,8 +42,8 @@ This tutorial explains how to attach a Frida script to Brawl Stars. Frida is a d
    - Insert the following Smali code to load your Frida script:
 
      ```smali
-     const-string lib, "XXX" 
-     invoke-static {lib}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V 
+     const-string v0, "XXX" 
+     invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V 
      ```
      Replace `"XXX"` with the name you used in step 1 (e.g., `"debug"`).
 
